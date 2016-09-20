@@ -421,6 +421,8 @@ public class ControleHotel {
 			
 		}else if (info.toLowerCase().equals("nome")){
 			cardapioRefeicao.get(nome).setNome(novaInfo);
+			cardapioRefeicao.put(novaInfo, cardapioRefeicao.get(nome));
+			cardapioRefeicao.remove(nome);
 			return true;
 		}
 		return false;
