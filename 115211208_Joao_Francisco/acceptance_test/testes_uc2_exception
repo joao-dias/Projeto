@@ -1,0 +1,43 @@
+##########################
+#     Caso de Uso 2      #
+# Trabalhando Exceptions #
+##########################
+
+iniciaSistema
+
+#####################################################
+#        Realiza checkin com Exception              #
+#####################################################
+
+expectError "Erro ao realizar checkin. Email do(a) hospede nao pode ser vazio." realizaCheckin email="" dias=5 quarto="1A" tipoQuarto="Presidencial"
+expectError "Erro ao realizar checkin. Email do(a) hospede nao pode ser vazio." realizaCheckin email="  " dias=5 quarto="1A" tipoQuarto="Presidencial"
+expectError "Erro ao realizar checkin. Email do(a) hospede esta invalido." realizaCheckin email="@sverige.se" dias=5 quarto="1A" tipoQuarto="Presidencial"
+expectError "Erro ao realizar checkin. Email do(a) hospede esta invalido." realizaCheckin email="alfred@" dias=5 quarto="1A" tipoQuarto="Presidencial"
+expectError "Erro ao realizar checkin. Email do(a) hospede esta invalido." realizaCheckin email="alfred@se" dias=5 quarto="1A" tipoQuarto="Presidencial"
+
+expectError "Erro ao realizar checkin. Quantidade de dias esta invalida." realizaCheckin email="sven@sverige.se" dias=-5 quarto="1A" tipoQuarto="Presidencial"
+
+expectError "Erro ao realizar checkin. ID do quarto invalido, use apenas numeros ou letras." realizaCheckin email="sven@sverige.se" dias=5 quarto="" tipoQuarto="Presidencial"
+expectError "Erro ao realizar checkin. ID do quarto invalido, use apenas numeros ou letras." realizaCheckin email="sven@sverige.se" dias=5 quarto="  " tipoQuarto="Presidencial"
+expectError "Erro ao realizar checkin. ID do quarto invalido, use apenas numeros ou letras." realizaCheckin email="sven@sverige.se" dias=5 quarto="#1" tipoQuarto="Presidencial"
+expectError "Erro ao realizar checkin. ID do quarto invalido, use apenas numeros ou letras." realizaCheckin email="sven@sverige.se" dias=5 quarto="@" tipoQuarto="Presidencial"
+
+expectError "Erro ao realizar checkin. Tipo de quarto invalido." realizaCheckin email="sven@sverige.se" dias=5 quarto="1A" tipoQuarto="Solteiro"
+expectError "Erro ao realizar checkin. Tipo de quarto invalido." realizaCheckin email="sven@sverige.se" dias=5 quarto="1A" tipoQuarto="Casal"
+
+#############################################
+# Checa informacoes das hospedagens criadas #
+#############################################
+
+expectError "Erro ao checar hospedagem ativa. Email do(a) hospede nao pode ser vazio." getInfoHospedagem email="" atributo="Hospedagens ativas"
+expectError "Erro ao checar hospedagem ativa. Email do(a) hospede nao pode ser vazio." getInfoHospedagem email="   " atributo="Hospedagens ativas"
+expectError "Erro ao checar hospedagem ativa. Email do(a) hospede esta invalido." getInfoHospedagem email="@sverige.se" atributo="Hospedagens ativas"
+expectError "Erro ao checar hospedagem ativa. Email do(a) hospede esta invalido." getInfoHospedagem email="alfred@" atributo="Hospedagens ativas"
+expectError "Erro ao checar hospedagem ativa. Email do(a) hospede esta invalido." getInfoHospedagem email="alfred.sverige.se" atributo="Hospedagens ativas"
+
+#########################################################################
+# Quartos jah ocupados nao podem ser usados para criar outra hospedagem #
+#########################################################################
+
+
+fechaSistema
